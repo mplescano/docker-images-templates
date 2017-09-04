@@ -1,0 +1,20 @@
+# IBM Integration Bus Sample Response File
+# This file contains sample values for installing IBM Integration Bus.
+
+# Has the license been accepted?
+#-------------------------------
+LICENSE_ACCEPTED=TRUE
+
+# Run the installer in silent mode
+#---------------------------------
+INSTALLER_UI=silent
+
+# Choose Install Folder
+#----------------------
+USER_INSTALL_DIR=/opt/iib/9.0.0.2
+
+# License location
+#---------------------
+External_License_Path=
+
+

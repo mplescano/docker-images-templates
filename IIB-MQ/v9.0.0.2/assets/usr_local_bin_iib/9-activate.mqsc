@@ -1,0 +1,10 @@
+
+* Override default block-list - channel now allows ANYBODY
+* SYSTEM.DEF.SVRCONN, SYSTEM.BKR.CONFIG channel
+* SYSTEM.ADMIN.SVRCONN CHLAUTH
+
+
+SET CHLAUTH('SYSTEM.BKR.CONFIG') TYPE(BLOCKUSER) USERLIST('nobody') DESCR('Override default block-list - channel now allows ANYBODY') ACTION(REPLACE)
+SET CHLAUTH('SYSTEM.BKR.CONFIG') TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(CHANNEL) DESCR('Allows connection via BKR channel') ACTION(REPLACE)
+* SET CHLAUTH('SYSTEM.BKR.CONFIG') TYPE(USERMAP) CLNTUSER('mqm') USERSRC(CHANNEL) DESCR('Allows admin user mqm to connect via BKR channel') ACTION(REPLACE)
+

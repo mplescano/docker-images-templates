@@ -1,0 +1,167 @@
+#!/bin/sh
+# kFreeBSD do not accept scripts as interpreters, using #!/bin/sh and sourcing.
+if [ true != "$INIT_D_SCRIPT_SOURCED" ] ; then
+    set "$0" "$@"; INIT_D_SCRIPT_SOURCED=true . /lib/init/init-d-script
+fi
+### BEGIN INIT INFO
+# Provides:          iib-server
+# Required-Start:    $network mq-server rsyslog
+# Required-Stop:     $network mq-server rsyslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: IIB initscript
+# Description:       This file should be used to construct scripts to be
+#                    placed in /etc/init.d.  This example start a
+#                    single forking daemon capable of writing a pid
+#                    file.  To get other behavoirs, implemend
+#                    do_start(), do_stop() or other functions to
+#                    override the defaults in /lib/init/init-d-script.
+#                    Register your script by update-rc.d hsqldb defaults
+### END INIT INFO
+
+# Author: MPLB <mplescano@>
+#
+
+USER=mqm
+CURRENT_DIR=/opt/iib/current
+DIR=$CURRENT_DIR
+NAME=iib
+DESC="IIB Server"
+DAEMON=none
+NODE_NAME=IIBV09002
+EXEC_NAME=IS1
+MQ_QMGR_NAME=IIB_MQMGR
+CMD_IIB="$CURRENT_DIR/bin/mqsistart $NODE_NAME"
+stdout_log="/var/log/$NAME.log"
+stderr_log="/var/log/$NAME.err"
+PATH=$PATH:$CURRENT_DIR/bin
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/iib/current/lib
+export LD_LIBRARY_PATH
+
+get_pid() {
+    cat "${PIDFILE}"
+}
+
+is_running() {
+    [ -f "${PIDFILE}" ] && ps axf | grep -v grep | grep bipservice > /dev/null 2>&1
+}
+
+# Return
+#   0 if daemon has been started
+#   1 if daemon was already running
+#   2 if daemon could not be started
+do_start_cmd() {
+    if is_running; then
+        echo "It was already Running"
+        return 1
+    else
+        cd "$DIR"
+        . $CURRENT_DIR/bin/mqsiprofile
+        #sudo ldconfig
+        NODE_EXISTS=`mqsilist | grep -v grep | grep $NODE_NAME > /dev/null ; echo $?`
+        echo "NODE_EXISTS = ${NODE_EXISTS}"
+        if [ ${NODE_EXISTS} -ne 0 ]; then
+            echo "Node $NODE_NAME does not exist..."
+            echo "Creating node $NODE_NAME"
+            sudo -u "$USER" -s  -- << EOF
+                CURRENT_DIR=/opt/iib/current
+                . $CURRENT_DIR/bin/mqsiprofile
+                $CURRENT_DIR/bin/mqsicreatebroker $NODE_NAME -q ${MQ_QMGR_NAME}
+                $CURRENT_DIR/bin/mqsistart $NODE_NAME
+                $CURRENT_DIR/bin/mqsicreateexecutiongroup $NODE_NAME -e $EXEC_NAME
+                $CURRENT_DIR/bin/mqsistop $NODE_NAME
+                $CURRENT_DIR/bin/mqsisetdbparms $NODE_NAME -n BROKER -u sa -p passw0rd
+EOF
+            #sudo -u "$USER" $CURRENT_DIR/bin/mqsicreatebroker $NODE_NAME -q ${MQ_QMGR_NAME}
+            #sudo -u "$USER" $CURRENT_DIR/bin/mqsistart $NODE_NAME
+            #sudo -u "$USER" $CURRENT_DIR/bin/mqsicreateexecutiongroup $NODE_NAME -e $EXEC_NAME
+            #sudo -u "$USER" $CURRENT_DIR/bin/mqsistop $NODE_NAME
+            #sudo -u "$USER" $CURRENT_DIR/bin/mqsisetdbparms $NODE_NAME -n BROKER -u sa -p passw0rd
+            
+            # Turn off script failing here because of listeners failing the script
+            set +e
+            . /opt/mqm/bin/setmqenv -s
+            for MQSC_FILE in $(ls -v /opt/iib/current/*.mqsc); do
+                sudo -u "$USER" /opt/mqm/bin/runmqsc ${MQ_QMGR_NAME} < ${MQSC_FILE}
+            done
+            set -e
+            
+        fi
+        
+        #if [ -z "$USER" ]; then
+        #    sudo $CMD_IIB >> "$stdout_log" 2>> "$stderr_log" &
+        #else
+        
+        sudo -u "$USER" -s  -- << EOF
+                CURRENT_DIR=/opt/iib/current
+                . $CURRENT_DIR/bin/mqsiprofile
+                $CURRENT_DIR/bin/mqsistart $NODE_NAME
+EOF
+        #    sudo -u "$USER" $CMD_IIB >> "$stdout_log" 2>> "$stderr_log" &
+        #fi
+        echo $! > "${PIDFILE}"
+        if ! is_running; then
+            return 2
+        fi
+        return 0
+    fi
+}
+
+# Return
+#   0 if daemon has been stopped
+#   1 if daemon was already stopped
+#   2 if daemon could not be stopped
+#   other if a failure occurred
+do_stop_cmd() {
+    if is_running; then
+        #kill -HUP `get_pid`
+        cd "$DIR"
+        #. $CURRENT_DIR/bin/mqsiprofile
+        sudo -u "$USER" -s  -- << EOF
+                CURRENT_DIR=/opt/iib/current
+                . $CURRENT_DIR/bin/mqsiprofile
+                $CURRENT_DIR/bin/mqsistop $NODE_NAME
+EOF
+        for i in 1 2 3 4 5 6 7 8 9 10
+        # for i in `seq 10`
+        do
+            if ! is_running; then
+                break
+            fi
+            echo -n "."
+            sleep 1
+        done
+        echo
+
+        if is_running; then
+            return 2
+        else
+            if [ -f "${PIDFILE}" ]; then
+                rm -f "${PIDFILE}"
+            fi
+            return 0
+        fi
+    else
+        if [ -f "${PIDFILE}" ]; then
+            rm -f "${PIDFILE}"
+        fi
+        return 1
+    fi
+}
+
+do_status() {
+    if [ -f "${PIDFILE}" ]; then
+        PID=`cat ${PIDFILE}`
+        #ps axf
+        if [ -z "`ps -p ${PID} | grep ${PID} | grep -v grep`" ]; then
+            printf "%s\n" "Process dead but pidfile exists"
+            return 1
+        else
+            echo "Running"
+            return 0
+        fi
+    else
+        echo "Stopped"
+        return 1
+    fi
+}
