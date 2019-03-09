@@ -1,0 +1,93 @@
+# LICENSE CDDL 1.0 + GPL 2.0
+#
+# ORACLE DOCKERFILES PROJECT
+# --------------------------
+# This is the Dockerfile for SOA Suite 12.1.3 Quick Start Distro
+# 
+# IMPORTANT
+# ---------
+# The resulting image of this Dockerfile DOES NOT contain a SOA Suite Domain.
+# For that, look into the folder 'samples' for an example on how
+# to create a domain on a new inherited image.
+#
+# You can go into 'samples/12c-domain' after building the generic raw image
+# and build that image, for example:
+# 
+#   $ cd samples/12c-domain
+#   $ sudo docker build -t mysoa .
+#   docker build -t mplescano/oracle-soa:11.1.7 .
+#   docker build --no-cache -t mplescano/oracle-soa:11.1.7 .
+#   docker run -it --rm mplescano/oracle-soa:11.1.7 /bin/bash
+#
+# REQUIRED FILES TO BUILD THIS IMAGE
+# ----------------------------------
+# (1) fmw_12.1.3.0.0_soaqs_Disk1_1of1.zip
+#     Download the Quick Start installer from http://www.oracle.com/technetwork/middleware/soasuite/downloads/index.html
+#	  docker cp D:\Downloads\V37380-01_2of2.zip 735a33289353:/u01/temp
+#     ./Disk1/runInstaller -nocheckForUpdates -ignoreSysPrereqs -novalidation -silent -jreloc /opt/jdk -invPtrLoc /u01/temp/oraInst.loc -responseFile /u01/temp/install.file
+#	  docker cp D:\mplescano\proyectos\oracleSOA\buildimage\11.1.7\install.file 735a33289353:/u01/temp
+#     docker cp D:\mplescano\proyectos\oracleSOA\buildimage\11.1.7\oraInst.loc 735a33289353:/u01/temp
+#
+# (2) jdk-7u75-linux-x64.rpm
+#     Download from http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html
+#
+# HOW TO BUILD THIS IMAGE
+# ------------------w-----
+# Put all downloaded files in the same directory as this Dockerfile
+# Run: 
+#      $ sudo docker build -t oracle/soa:12.1.3-dev . 
+#
+# Pull base image
+# ---------------
+FROM mplescano/java-alpine:7.80.15.jdk
+
+# Maintainer
+# ----------
+MAINTAINER mplescano@
+
+# Environment variables required for this build (do NOT change)
+# -------------------------------------------------------------
+ENV SOA_ZIP V37380-01_1of2.zip
+ENV SOA_ZIP2 V37380-01_2of2.zip
+ENV JAVA_HOME /opt/jdk
+ENV CONFIG_JVM_ARGS -Djava.security.egd=file:/dev/./urandom
+
+# SETUP FILESYSTEM AND ORACLE USER
+# ------------------------------------------------------------
+RUN mkdir /u01 && mkdir /u01/temp && mkdir /u01/oracle && chmod a+xr /u01 && \
+    adduser -h /u01 -D -s /bin/bash oracle
+
+# Copy packages
+ADD $SOA_ZIP /u01/temp
+ADD $SOA_ZIP2 /u01/temp
+COPY install.file /u01/temp
+COPY oraInst.loc /u01/temp
+
+# Change the open file limits in /etc/security/limits.conf
+#RUN sed -i '/.*EOF/d' /etc/security/limits.conf && \
+#    echo "* soft nofile 16384" >> /etc/security/limits.conf && \ 
+#    echo "* hard nofile 16384" >> /etc/security/limits.conf && \ 
+#    echo "# EOF"  >> /etc/security/limits.conf
+
+# Change the kernel parameters that need changing.
+RUN echo "net.core.rmem_max=4192608" > /u01/temp/.sysctl.conf && \
+    echo "net.core.wmem_max=4192608" >> /u01/temp/.sysctl.conf && \ 
+    sysctl -e -p /u01/temp/.sysctl.conf
+
+# Unzip SOA Suite installer
+WORKDIR /u01/temp
+
+# Adjust file permissions, go to /u01 as user 'oracle' to proceed with SOA Suite installation
+# Installation of SOA Suite 
+# Remove packages
+RUN mkdir /u01/temp/.inventory && \
+chown oracle:oracle -R /u01 && \
+unzip /u01/temp/$SOA_ZIP && rm -Rf /u01/temp/$SOA_ZIP && unzip /u01/temp/$SOA_ZIP2 && rm -Rf /u01/temp/$SOA_ZIP2 && \
+su oracle -c "/u01/temp/Disk1/runInstaller -waitforcompletion -nowait -nocheckForUpdates -ignoreSysPrereqs -novalidation -silent -jreloc $JAVA_HOME -invPtrLoc /u01/temp/oraInst.loc -responseFile /u01/temp/install.file"
+
+WORKDIR /u01/oracle/
+
+ENV PATH $PATH:/u01/oracle/oracle_common/common/bin
+
+# Define default command to start bash. 
+CMD ["bash"]

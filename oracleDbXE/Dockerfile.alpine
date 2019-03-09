@@ -1,0 +1,15 @@
+#      docker build -t mplescano/oracle-db-xe:11.2 .
+#      docker run -it --rm mplescano/oracle-db-xe:11.2 /bin/bash
+FROM mplescano/java-alpine:7.80.15.jdk
+
+MAINTAINER mplescano@
+
+RUN echo "http://nl.alpinelinux.org/alpine/v3.5/main/" > /etc/apk/repositories
+RUN echo "http://nl.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
+
+ADD assets /assets
+RUN /assets/setup.alpine.sh
+
+EXPOSE 1521
+
+CMD /usr/sbin/startup.sh

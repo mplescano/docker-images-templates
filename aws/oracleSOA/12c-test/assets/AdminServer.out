@@ -1,0 +1,191 @@
+*****************************************************
+** Setting up SOA specific environment...
+*****************************************************
+EXTRA_JAVA_PROPERTIES= -da:org.apache.xmlbeans...
+.
+LD_LIBRARY_PATH=:/u01/app/oracle/middleware/wlserver/server/native/linux/x86_64:/u01/app/oracle/middleware/wlserver/server/native/linux/x86_64/oci920_8
+.
+.
+*****************************************************
+** End SOA specific environment setup
+*****************************************************
+.
+.
+JAVA Memory arguments: -Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m
+.
+CLASSPATH=/u01/app/oracle/middleware/soa/soa/modules/user-patch.jar:/u01/app/oracle/middleware/soa/soa/modules/soa-startup.jar:/u01/app/oracle/middleware/soa/bam/lib/bam-timerlistener.jar:/u01/app/oracle/middleware/oracle_common/modules/features/com.oracle.db.jdbc7-dms.jar:/u01/app/oracle/middleware/oracle_common/modules/odsi_xquery2004_12.1.3/odsi.xquery.modules_12.1.3.0.jar:/opt/jdk1.7.0_80/lib/tools.jar:/u01/app/oracle/middleware/wlserver/server/lib/weblogic_sp.jar:/u01/app/oracle/middleware/wlserver/server/lib/weblogic.jar:/u01/app/oracle/middleware/wlserver/../oracle_common/modules/net.sf.antcontrib_1.1.0.0_1-0b3/lib/ant-contrib.jar:/u01/app/oracle/middleware/wlserver/modules/features/oracle.wls.common.nodemanager_2.0.0.0.jar:/u01/app/oracle/middleware/soa/soa/modules/oracle.soa.common.adapters_11.1.1/oracle.soa.common.adapters.jar:/u01/app/oracle/middleware/soa/soa/modules/oracle.cloud.adapter_12.1.3/oracle.cloud.adapter.jar:/u01/app/oracle/middleware/osb/lib/servicebus-common.jar:/u01/app/oracle/middleware/oracle_common/communications/modules/config-12.1.3.jar:/u01/app/oracle/middleware/oracle_common/communications/modules/userprefs-config-12.1.3.jar:/u01/app/oracle/middleware/oracle_common/modules/oracle.xdk_12.1.3/xsu12.jar:/u01/app/oracle/middleware/wlserver/../modules/features/weblogic.server.modules.xquery_10.3.1.0.jar:/u01/app/oracle/middleware/soa/soa/modules/db2jcc4.jar:/u01/app/oracle/user_projects/domains/soa_devdomain/config/soa-infra:/u01/app/oracle/middleware/soa/soa/modules/fabric-url-handler_11.1.1.jar:/u01/app/oracle/middleware/soa/soa/modules/quartz-all-1.6.5.jar:/u01/app/oracle/middleware/soa/soa/modules/oracle.soa.fabric_11.1.1/oracle.soa.fabric.jar:/u01/app/oracle/middleware/soa/soa/modules/oracle.soa.fabric_11.1.1/fabric-runtime-ext-wls.jar:/u01/app/oracle/middleware/soa/soa/modules/oracle.soa.adapter_11.1.1/oracle.soa.adapter.jar:/u01/app/oracle/middleware/soa/soa/modules/oracle.soa.b2b_11.1.1/oracle.soa.b2b.jar:/u01/app/oracle/middleware/oracle_common/modules/internal/features/jrf_wlsFmw_oracle.jrf.wls.classpath_12.1.3.jar:/u01/app/oracle/middleware/osb/lib/version.jar:/u01/app/oracle/middleware/osb/lib/servicebus.jar:/u01/app/oracle/user_projects/domains/soa_devdomain/config/osb:/u01/app/oracle/middleware/soa/soa/modules/oracle.soa.fabric_11.1.1/tracking-api.jar:/u01/app/oracle/middleware/soa/soa/modules/commons-cli-1.1.jar:/u01/app/oracle/middleware/soa/soa/modules/oracle.soa.mgmt_11.1.1/soa-infra-mgmt.jar:/u01/app/oracle/middleware/wlserver/../oracle_common/modules/com.oracle.cie.config-wls-online_8.1.0.0.jar::/u01/app/oracle/middleware/wlserver/common/derby/lib/derbynet.jar:/u01/app/oracle/middleware/wlserver/common/derby/lib/derbyclient.jar:/u01/app/oracle/middleware/wlserver/common/derby/lib/derby.jar:/u01/app/oracle/middleware/wlserver/server/lib/xqrl.jar
+.
+PATH=/u01/app/oracle/middleware/wlserver/server/bin:/u01/app/oracle/middleware/wlserver/../oracle_common/modules/org.apache.ant_1.9.2/bin:/opt/jdk1.7.0_80/jre/bin:/opt/jdk1.7.0_80/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+.
+***************************************************
+*  To start WebLogic Server, use a username and   *
+*  password assigned to an admin-level user.  For *
+*  server administration, use the WebLogic Server *
+*  console at http://hostname:port/console        *
+***************************************************
+starting weblogic with Java version:
+java version "1.7.0_80"
+Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
+Starting WLS with line:
+/opt/jdk1.7.0_80/bin/java -server   -Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m -Dweblogic.Name=AdminServer -Djava.security.policy=/u01/app/oracle/middleware/wlserver/server/lib/weblogic.policy -Dtangosol.coherence.wka=localhost -Dtangosol.coherence.ttl=0 -Dtangosol.coherence.localhost=127.0.0.1 -Xverify:none -Djava.endorsed.dirs=/opt/jdk1.7.0_80/jre/lib/endorsed:/u01/app/oracle/middleware/wlserver/../oracle_common/modules/endorsed -Djava.protocol.handler.pkgs=oracle.mds.net.protocol|oracle.fabric.common.classloaderurl.handler|oracle.fabric.common.uddiurl.handler|oracle.bpm.io.fs.protocol -Dopss.version=12.1.3 -Digf.arisidbeans.carmlloc=/u01/app/oracle/user_projects/domains/soa_devdomain/config/fmwconfig/carml -Digf.arisidstack.home=/u01/app/oracle/user_projects/domains/soa_devdomain/config/fmwconfig/arisidprovider -Doracle.security.jps.config=/u01/app/oracle/user_projects/domains/soa_devdomain/config/fmwconfig/jps-config.xml -Doracle.deployed.app.dir=/u01/app/oracle/user_projects/domains/soa_devdomain/servers/AdminServer/tmp/_WL_user -Doracle.deployed.app.ext=/- -Dweblogic.alternateTypesDirectory=/u01/app/oracle/middleware/oracle_common/modules/oracle.ossoiap_12.1.3,/u01/app/oracle/middleware/oracle_common/modules/oracle.oamprovider_12.1.3,/u01/app/oracle/middleware/oracle_common/modules/oracle.jps_12.1.3 -Doracle.mds.filestore.preferred=true -Dadf.version=12.1.3 -Dweblogic.jdbc.remoteEnabled=false -Dcommon.components.home=/u01/app/oracle/middleware/oracle_common -Djrf.version=12.1.3 -Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Jdk14Logger -Ddomain.home=/u01/app/oracle/user_projects/domains/soa_devdomain -Doracle.server.config.dir=/u01/app/oracle/user_projects/domains/soa_devdomain/config/fmwconfig/servers/AdminServer -Doracle.domain.config.dir=/u01/app/oracle/user_projects/domains/soa_devdomain/config/fmwconfig -Doracle.osb.home=/u01/app/oracle/middleware/osb  -da -Dwls.home=/u01/app/oracle/middleware/wlserver/server -Dweblogic.home=/u01/app/oracle/middleware/wlserver/server  -Djavax.management.builder.initial=weblogic.management.jmx.mbeanserver.WLSMBeanServerBuilder  -da:org.apache.xmlbeans... -Dem.oracle.home=/u01/app/oracle/middleware/em -DINSTANCE_HOME=/u01/app/oracle/user_projects/domains/soa_devdomain -Djava.awt.headless=true -Doracle.sysman.util.logging.mode=dual_mode -Djps.app.credential.overwrite.allowed=true -Dbam.oracle.home=/u01/app/oracle/middleware/soa -Dsoa.archives.dir=/u01/app/oracle/middleware/soa/soa -Dsoa.oracle.home=/u01/app/oracle/middleware/soa -Dsoa.instance.home=/u01/app/oracle/user_projects/domains/soa_devdomain -Dtangosol.coherence.log=jdk -Djavax.xml.soap.MessageFactory=oracle.j2ee.ws.saaj.soap.MessageFactoryImpl -Dweblogic.transaction.blocking.commit=true -Dweblogic.transaction.blocking.rollback=true -Djavax.net.ssl.trustStore=/u01/app/oracle/middleware/wlserver/server/lib/DemoTrust.jks -Doracle.xml.schema/Ignore_Duplicate_Components=true -Doracle.xdkjava.compatibility.version=11.1.1 -Doracle.soa.compatibility.version=11.1.1 -Dums.oracle.home=/u01/app/oracle/middleware/oracle_common   -Djava.util.logging.manager=oracle.core.ojdl.logging.ODLLogManager -Dweblogic.utils.cmm.lowertier.ServiceDisabled=true  weblogic.Server
+<Mar 8, 2017 4:19:05 AM UTC> <Info> <Security> <BEA-090905> <Disabling the CryptoJ JCE Provider self-integrity check for better startup performance. To enable this check, specify -Dweblogic.security.allowCryptoJDefaultJCEVerification=true.> 
+<Mar 8, 2017 4:19:05 AM UTC> <Info> <Security> <BEA-090906> <Changing the default Random Number Generator in RSA CryptoJ from ECDRBG128 to FIPS186PRNG. To disable this change, specify -Dweblogic.security.allowCryptoJDefaultPRNG=true.> 
+<Mar 8, 2017 4:19:09 AM UTC> <Info> <WebLogicServer> <BEA-000377> <Starting WebLogic Server with Java HotSpot(TM) 64-Bit Server VM Version 24.80-b11 from Oracle Corporation.> 
+<Mar 8, 2017 4:19:11 AM UTC> <Info> <Management> <BEA-141107> <Version: WebLogic Server 12.1.3.0.0  Wed May 21 18:53:34 PDT 2014 1604337 > 
+<Mar 8, 2017 4:19:21 AM UTC> <Notice> <WebLogicServer> <BEA-000365> <Server state changed to STARTING.> 
+<Mar 8, 2017 4:19:21 AM UTC> <Info> <WorkManager> <BEA-002900> <Initializing self-tuning thread pool.> 
+<Mar 8, 2017 4:19:22 AM UTC> <Info> <WorkManager> <BEA-002942> <CMM memory level becomes 0. Setting standby thread pool size to 256.> 
+<Mar 8, 2017 4:19:24 AM UTC> <Notice> <Log Management> <BEA-170019> <The server log file /u01/app/oracle/user_projects/domains/soa_devdomain/servers/AdminServer/logs/AdminServer.log is opened. All server side log events will be written to this file.> 
+Mar 08, 2017 4:19:27 AM oracle.security.jps.JpsStartup start
+INFO: Jps initializing.
+Mar 08, 2017 4:19:32 AM oracle.security.jps.internal.idstore.util.LibOvdUtil pushLdapNamesToLibOvd
+INFO: Pushed ldap name and types info to libOvd. Ldaps : DefaultAuthenticator:idstore.ldap.provideridstore.ldap.
+Mar 08, 2017 4:19:36 AM oracle.security.jps.JpsStartup start
+INFO: Jps started.
+<Mar 8, 2017 4:19:40 AM UTC> <Notice> <Security> <BEA-090082> <Security initializing using security realm myrealm.> 
+Mar 08, 2017 4:19:48 AM com.tangosol.coherence.component.util.logOutput.Jdk log
+INFO: 2017-03-08 04:19:48.842/52.503 Oracle Coherence 12.1.3.0.0 <Info> (thread=[STANDBY] ExecuteThread: '3' for queue: 'weblogic.kernel.Default (self-tuning)', member=n/a): Loaded operational configuration from "jar:file:/u01/app/oracle/middleware/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+Mar 08, 2017 4:19:49 AM com.tangosol.coherence.component.util.logOutput.Jdk log
+INFO: 2017-03-08 04:19:49.043/52.703 Oracle Coherence 12.1.3.0.0 <Info> (thread=[STANDBY] ExecuteThread: '3' for queue: 'weblogic.kernel.Default (self-tuning)', member=n/a): Loaded operational overrides from "jar:file:/u01/app/oracle/middleware/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
+<Mar 8, 2017 4:19:54 AM UTC> <Notice> <Security> <BEA-090171> <Loading the identity certificate and private key stored under the alias DemoIdentity from the kss keystore file kss://system/demoidentity.> 
+<Mar 8, 2017 4:19:55 AM UTC> <Notice> <Security> <BEA-090169> <Loading trusted certificates from the kss keystore file kss://system/trust.> 
+<Mar 8, 2017 4:19:55 AM UTC> <Notice> <Security> <BEA-090169> <Loading trusted certificates from the jks keystore file /opt/jdk1.7.0_80/jre/lib/security/cacerts.> 
+<Mar 8, 2017 4:19:56 AM UTC> <Warning> <com.oracle.coherence> <BEA-000000> <2017-03-08 04:19:56.939/60.599 Oracle Coherence GE 12.1.3.0.0 <Warning> (thread=[STANDBY] ExecuteThread: '3' for queue: 'weblogic.kernel.Default (self-tuning)', member=n/a): UnicastUdpSocket failed to set receive buffer size to 16 packets (1MB); actual size is 20%, 3 packets (208KB). Consult your OS documentation regarding increasing the maximum socket buffer size. Proceeding with the actual value may cause sub-optimal performance.> 
+<Mar 8, 2017 4:19:56 AM UTC> <Warning> <com.oracle.coherence> <BEA-000000> <2017-03-08 04:19:56.944/60.604 Oracle Coherence GE 12.1.3.0.0 <Warning> (thread=[STANDBY] ExecuteThread: '3' for queue: 'weblogic.kernel.Default (self-tuning)', member=n/a): PreferredUnicastUdpSocket failed to set receive buffer size to 1444 packets (2MB); actual size is 10%, 146 packets (208KB). Consult your OS documentation regarding increasing the maximum socket buffer size. Proceeding with the actual value may cause sub-optimal performance.> 
+Mar 08, 2017 4:19:59 AM oracle.dms.servlet.DMSServletFilter setEagerlySetContextValues
+INFO: The setting that controls the eager fetching of some types of execution context data has been set to true.
+<Mar 8, 2017 4:20:07 AM UTC> <Notice> <WebLogicServer> <BEA-000365> <Server state changed to STANDBY.> 
+<Mar 8, 2017 4:20:07 AM UTC> <Notice> <WebLogicServer> <BEA-000365> <Server state changed to STARTING.> 
+<Mar 8, 2017 4:20:07 AM UTC> <Notice> <Log Management> <BEA-170032> <The Server has detected ODL configuration for java.util.logging. The PlatformLoggerLevels attribute configuration on the LogMBean will be ignored.> 
+<Mar 8, 2017 4:20:54 AM UTC> <Warning> <HTTP> <BEA-101384> <WLServlet annotation is deprecated, please use servlet 3.0 annotation instead. App:usermessagingserver@sdpmessaging/userprefs-ui, Class:oracle.adfinternal.view.faces.activedata.AdsServlet> 
+<Mar 8, 2017 4:21:21 AM UTC> <Warning> <oracle.osb.transports.mq.mqtransport> <OSB-381924> <MQ Transport could not be registered due to missing MQ library. For using MQ Transport, please put MQ library in the classpath> 
+<Mar 8, 2017 4:21:24 AM UTC> <Warning> <HTTP> <BEA-101384> <WLServlet annotation is deprecated, please use servlet 3.0 annotation instead. App:service-bus@servicebus, Class:oracle.adfinternal.view.faces.activedata.AdsServlet> 
+<Mar 8, 2017 4:21:26 AM UTC> <Warning> <J2EE> <BEA-160195> <The application version lifecycle event listener oracle.security.jps.wls.listeners.JpsAppVersionLifecycleListener is ignored because the application BamCQService is not versioned.> 
+<Mar 8, 2017 4:21:32 AM UTC> <Warning> <J2EE> <BEA-160140> <Unresolved optional package references (in META-INF/MANIFEST.MF): [Extension-Name: oracle.applcore.model, Specification-Version: 0.1, Implementation-Version: 11.1.1.0.0, referenced from: /u01/app/oracle/user_projects/domains/soa_devdomain/servers/AdminServer/tmp/_WL_user/worklistapp/os6mg5]. Ensure that the referenced optional package has been deployed as a library.> 
+<Mar 8, 2017 4:21:32 AM UTC> <Warning> <Diagnostics> <BEA-320131> <Instrumentation module worklistapp is configured, but disabled because a WLDF system resource is not targeted to the server, or its instrumentation component is not enabled.> 
+<Mar 8, 2017 4:21:32 AM UTC> <Warning> <HTTP> <BEA-101384> <WLServlet annotation is deprecated, please use servlet 3.0 annotation instead. App:worklistapp@integration/worklistapp, Class:oracle.adfinternal.view.faces.activedata.AdsServlet> 
+<Mar 8, 2017 4:21:55 AM UTC> <Warning> <HTTP> <BEA-101384> <WLServlet annotation is deprecated, please use servlet 3.0 annotation instead. App:DefaultToDoTaskFlow@workflow/DefaultToDoTaskFlow, Class:oracle.adfinternal.view.faces.activedata.AdsServlet> 
+<Mar 8, 2017 4:22:00 AM UTC> <Warning> <oracle.mds> <BEA-000000> <MDS-11019: The default CharSet US-ASCII is not a unicode character set. File names with non-ASCII characters may not operate as expected. Check locale settings.> 
+[EL Config]: metadata: 2017-03-08 04:22:07.129--ServerSession(1010942320)--Thread(Thread[[ACTIVE] ExecuteThread: '13' for queue: 'weblogic.kernel.Default (self-tuning)',5,Pooled Threads])--The access type for the persistent class [class oracle.bpm.services.customapp.persistency.model.BPMCustomAppEntity] is set to [FIELD].
+[EL Config]: metadata: 2017-03-08 04:22:07.13--ServerSession(1010942320)--Thread(Thread[[ACTIVE] ExecuteThread: '13' for queue: 'weblogic.kernel.Default (self-tuning)',5,Pooled Threads])--The alias name for the entity class [class oracle.bpm.services.customapp.persistency.model.BPMCustomAppEntity] is being defaulted to: BPMCustomAppEntity.
+<Mar 8, 2017 4:22:15 AM UTC> <Warning> <HTTP> <BEA-101384> <WLServlet annotation is deprecated, please use servlet 3.0 annotation instead. App:soa-webapps@soa/composer, Class:oracle.adfinternal.view.faces.activedata.AdsServlet> 
+<Mar 8, 2017 4:22:17 AM UTC> <Warning> <J2EE> <BEA-160195> <The application version lifecycle event listener oracle.security.jps.wls.listeners.JpsAppVersionLifecycleListener is ignored because the application BamServer is not versioned.> 
+<Mar 8, 2017 4:22:24 AM UTC> <Warning> <EJB> <BEA-010202> <Call-by-reference is not enabled for EJB BeamImportExport. The server will have better performance if it is enabled. To enable call-by-reference, set the enable-call-by-reference element to True in the weblogic-ejb-jar.xml deployment descriptor or corresponding annotation for this EJB.> 
+<Mar 8, 2017 4:22:24 AM UTC> <Warning> <EJB> <BEA-010001> <While deploying EJB "TimerAlertHelper", class oracle.beam.common.alertsengine.timers.TimerAlertHelper was loaded from the system classpath. As a result, this class cannot be reloaded while the server is running. To prevent this behavior in the future, make sure the class is not located in the server classpath.> 
+<Mar 8, 2017 4:22:28 AM UTC> <Warning> <HTTP> <BEA-101384> <WLServlet annotation is deprecated, please use servlet 3.0 annotation instead. App:em@em, Class:oracle.adfinternal.view.faces.activedata.AdsServlet> 
+<Mar 8, 2017 4:22:29 AM UTC> <Warning> <J2EE> <BEA-160140> <Unresolved optional package references (in META-INF/MANIFEST.MF): [Extension-Name: oracle.bpm.runtime, referenced from: /u01/app/oracle/user_projects/domains/soa_devdomain/servers/AdminServer/tmp/_WL_user/oracle.bpm.management.webapp/fccywl], [Extension-Name: oracle.bpm.client, referenced from: /u01/app/oracle/user_projects/domains/soa_devdomain/servers/AdminServer/tmp/_WL_user/oracle.bpm.management.webapp/fccywl], [Extension-Name: oracle.bpm.projectlib, referenced from: /u01/app/oracle/user_projects/domains/soa_devdomain/servers/AdminServer/tmp/_WL_user/oracle.bpm.management.webapp/fccywl], [Extension-Name: oracle.bpm.webapp.common, referenced from: /u01/app/oracle/user_projects/domains/soa_devdomain/servers/AdminServer/tmp/_WL_user/oracle.bpm.management.webapp/fccywl]. Ensure that the referenced optional package has been deployed as a library.> 
+<Mar 8, 2017 4:22:31 AM UTC> <Warning> <J2EE> <BEA-160195> <The application version lifecycle event listener oracle.security.jps.wls.listeners.JpsAppVersionLifecycleListener is ignored because the application BamComposer is not versioned.> 
+<Mar 8, 2017 4:22:33 AM UTC> <Warning> <oracle.mds> <BEA-000000> <MDS-11033: Duplicate mappings between namespace "/oracle/adf/share/prefs" and metadata store "WebCenterFileMetadataStore" are found in the persistence configuration.> 
+<Mar 8, 2017 4:22:36 AM UTC> <Warning> <oracle.mds> <BEA-000000> <MDS-10024: Preparing the list of documents to be excluded during transfer as per the configuration given in mds-transfer-config.xml.> 
+<Mar 8, 2017 4:22:41 AM UTC> <Warning> <HTTP> <BEA-101384> <WLServlet annotation is deprecated, please use servlet 3.0 annotation instead. App:BamComposer@bam/composer, Class:oracle.adfinternal.view.faces.activedata.AdsServlet> 
+<Mar 8, 2017 4:22:59 AM UTC> <Warning> <oracle.adf.share.logging.internal.perf.SensorTable> <BEA-000000> <Detected that sensors created in an invalid ADFContext were later visible in a valid ADFContext.  The sensors should be created in a valid ADFContext.  Please enable finest logging for more information.> 
+<Mar 8, 2017 4:23:25 AM UTC> <Warning> <oracle.sdp.messaging.newdriver.DriverContainer> <SDP-26007> <No configuration was found for this Driver deployment: usermessagingdriver-email. Driver disabled until a configuration is created.> 
+<Mar 8, 2017 4:23:25 AM UTC> <Warning> <oracle.sdpinternal.messaging.driver.extension.ResourceAdapter> <SDP-26453> <No configuration was found for this Extension Driver deployment: usermessagingdriver-extension. Driver disabled until a configuration is created.> 
+<Mar 8, 2017 4:23:25 AM UTC> <Warning> <oracle.sdpinternal.messaging.driver.smpp.SMPPResourceAdapter> <SDP-26160> <No configuration was found for this SMPP Driver deployment: usermessagingdriver-smpp. Driver disabled until a configuration is created.> 
+<Mar 8, 2017 4:23:25 AM UTC> <Warning> <oracle.sdpinternal.messaging.driver.twitter.TwitterResourceAdapter> <SDP-26308> <No configuration was found for this Twitter Driver deployment: usermessagingdriver-twitter. Driver disabled until a configuration is created.> 
+<Mar 8, 2017 4:23:25 AM UTC> <Warning> <oracle.sdpinternal.messaging.driver.voicexml.VoiceXMLResourceAdapter> <SDP-26362> <No configuration was found for this VoiceXML Driver deployment: usermessagingdriver-voicexml. Driver disabled until a configuration is created.> 
+<Mar 8, 2017 4:23:25 AM UTC> <Warning> <oracle.sdpinternal.messaging.driver.xmpp.XMPPResourceAdapter> <SDP-26249> <No configuration was found for this XMPP Driver deployment: usermessagingdriver-xmpp. Driver disabled until a configuration is created.> 
+<Mar 8, 2017 4:23:27 AM UTC> <Warning> <weblogic-coherence-integration> <BEA-000007> <Could not find the JNDI resource [cache-config/servicebus/result-cache] referenced by cache-configuration-ref.> 
+
+Service Bus Debugger listening on port 7453.
+
+<Mar 8, 2017 4:24:09 AM UTC> <Warning> <oracle.adf.share.logging.internal.perf.SensorTable> <BEA-000000> <Detected that sensors created in an invalid ADFContext were later visible in a valid ADFContext.  The sensors should be created in a valid ADFContext.  Please enable finest logging for more information.> 
+<Mar 8, 2017 4:24:11 AM UTC> <Warning> <weblogic-coherence-integration> <BEA-000007> <Could not find the JNDI resource [cache-config/bpel/bpel-cache] referenced by cache-configuration-ref.> 
+Not fusion apps env
+FA MDS Consolidation is NOT enabled
+Not fusion apps env
+INFO: FaultPoliciesParser.<init> ------->Constructed Policy parser
+[EL Info]: 2017-03-08 04:24:40.715--ServerSession(1394039669)--EclipseLink, version: Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd
+[EL Info]: 2017-03-08 04:24:40.715--ServerSession(1394039669)--Server: 12.1.3.0.0
+[EL Info]: connection: 2017-03-08 04:24:40.744--ServerSession(1394039669)--tracking_session login successful
+[EL Info]: 2017-03-08 04:24:40.9--ServerSession(1098237651)--EclipseLink, version: Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd
+[EL Info]: 2017-03-08 04:24:40.9--ServerSession(1098237651)--Server: 12.1.3.0.0
+[EL Info]: connection: 2017-03-08 04:24:40.937--ServerSession(1098237651)--deferred_session login successful
+#### On FabricKernelInitializerServlet, DiagnosticsFramework loaded from file:/u01/app/oracle/middleware/oracle_common/modules/oracle.dms_12.1.3/dms.jar
+#### On MBeanManager, DiagnosticsFramework loaded from file:/u01/app/oracle/middleware/oracle_common/modules/oracle.dms_12.1.3/dms.jar
+
+Generic SOA Debugger listening on port 5004.
+
+[EL Info]: 2017-03-08 04:24:55.234--ServerSession(379287790)--EclipseLink, version: Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd
+[EL Info]: connection: 2017-03-08 04:24:55.255--ServerSession(379287790)--file:/u01/app/oracle/middleware/soa/soa/modules/oracle.soa.fabric_11.1.1/tracking-fabric.jar_soa_purge_persistence_unit login successful
+<Mar 8, 2017 4:25:06 AM UTC> <Warning> <oracle.adf.share.logging.internal.perf.SensorTable> <BEA-000000> <Detected that sensors created in an invalid ADFContext were later visible in a valid ADFContext.  The sensors should be created in a valid ADFContext.  Please enable finest logging for more information.> 
+<Mar 8, 2017 4:25:12 AM UTC> <Notice> <EclipseLink> <BEA-2005000> <2017-03-08 04:25:12.059--ServerSession(1234431440)--EclipseLink, version: Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd> 
+<Mar 8, 2017 4:25:12 AM UTC> <Notice> <EclipseLink> <BEA-2005000> <2017-03-08 04:25:12.059--ServerSession(1234431440)--Server: 12.1.3.0.0> 
+<Mar 8, 2017 4:25:12 AM UTC> <Notice> <EclipseLink> <BEA-2005000> <2017-03-08 04:25:12.148--ServerSession(1234431440)--BeamServer login successful> 
+<Mar 8, 2017 4:25:12 AM UTC> <Notice> <EclipseLink> <BEA-2005000> <2017-03-08 04:25:12.388--ServerSession(475565224)--EclipseLink, version: Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd> 
+<Mar 8, 2017 4:25:12 AM UTC> <Notice> <EclipseLink> <BEA-2005000> <2017-03-08 04:25:12.389--ServerSession(475565224)--Server: 12.1.3.0.0> 
+<Mar 8, 2017 4:25:12 AM UTC> <Notice> <EclipseLink> <BEA-2005000> <2017-03-08 04:25:12.446--ServerSession(475565224)--BeamPersistence login successful> 
+In ConfigManager.loadProperties. propFile=/u01/app/oracle/user_projects/domains/soa_devdomain/sysman/config/emoms.properties
+Running inside container
+Getting props from mbean
+Try to query mbean name for emoms.props:type=Properties,name=emoms.properties,*
+Try to get the Properties Attribute Map from the ConfigMBean  emoms.props:name=emoms.properties,type=Properties,Application=em
+Got the Proprties Attribute Map from the ConfigMBean  emoms.props:name=emoms.properties,type=Properties,Application=em
+The size of the property map is 12
+In ConfigManager.loadProperties. propFile=/u01/app/oracle/user_projects/domains/soa_devdomain/sysman/config/emoms.properties
+Running inside container
+Getting props from mbean
+Try to query mbean name for emoms.props:type=Properties,name=emoms.properties,*
+Try to get the Properties Attribute Map from the ConfigMBean  emoms.props:name=emoms.properties,type=Properties,Application=em
+Got the Proprties Attribute Map from the ConfigMBean  emoms.props:name=emoms.properties,type=Properties,Application=em
+The size of the property map is 12
+Loading integration file at /u01/app/oracle/user_projects/domains/soa_devdomain/sysman/config/, emomsintg.xml
+intg.xml file does not exist at emomsintg.xml
+securePort = -1
+<ConfigManager.getOMSSecureStatus> isOMSSecure = 0 isOMSSecureLocked = 0
+<initLoggingSystem>:Enter.
+In ConfigManager.loadProperties. propFile=emomslogging.properties
+Running inside container
+Getting props from mbean
+Try to query mbean name for emomslogging.props:type=Properties,name=emomslogging.properties,*
+Try to get the Properties Attribute Map from the ConfigMBean  emomslogging.props:name=emomslogging.properties,type=Properties,Application=em
+Got the Proprties Attribute Map from the ConfigMBean  emomslogging.props:name=emomslogging.properties,type=Properties,Application=em
+The size of the property map is 17
+No logging has been configured and default agent logging support is unavailable.
+PAF Integration init BEGIN
+PAF Integration init END
+ProvCommonIntegration.init, registering the Page Handlers and Page Segment Handlers
+inside MultiOMSIntegration
+FMWProv: Integration Class called and was reloaded for me
+PostInstallConfigIntegration:oracle_ias_farm target auth registration is done.
+CompositesProvIntegration init...
+getAllPluginOracleHomes: ConnectionService is null
+getAllPluginOracleHomes: ConnectionService is null
+Anonymous url config processing:/WEB-INF/config/anonymous-access-emcore.config
+Anonymous-urls:[/em/IEsvgdetect.js.*, /em/LoginStatusServlet.*, /em/adf/.*, /em/adflib/.*, /em/afr/.*, /em/bi/.*, /em/cabo/.*, /em/console/help.*, /em/console/logon/.*, /em/faces/logon/.*, /em/login.jsp, /em/mobile/core/uifwk/skins/.*, /em/dynamicImage.*, /em/emcli/custAttrib.*, /em/flashbridge.*, /em/helppages/help.*, /em/faces/helppages/.*, /em/images/.*, /em/jobrecv.*, /em/jsLibs/.*, /em/mapproxy.*, /em/onetime.*, /em/public/.*, /em/redirect.*, /em/relocatetarget.*, /em/servlet/GaugeServlet.*, /em/servlet/GraphServlet.*, /em/websvcs.*, /em/ecm/csa/CSA.jar, /em/ecm/csa/CSA.mb, /em/ecm/csa/csabanner.gif, /em/ocamm/lib.*, /em/VncViewer.jar, /em/formsapp/lib/formsRecorder.jar, /em/bmp/discovertargets, /em/ovs/discovertargets, /em/swlib/getfile, /em/install/getAgentImage, /em/consoleStatus.jsp, /em/public_lib_download/.*]
+<Mar 8, 2017 4:26:04 AM UTC> <Warning> <oracle.adf.share.logging.internal.perf.SensorTable> <BEA-000000> <Detected that sensors created in an invalid ADFContext were later visible in a valid ADFContext.  The sensors should be created in a valid ADFContext.  Please enable finest logging for more information.> 
+<Mar 8, 2017 4:26:11 AM UTC> <Warning> <oracle.adf.share.ADFContext> <BEA-000000> <Automatically initializing a DefaultContext for getCurrent.
+Caller should ensure that a DefaultContext is proper for this use.
+Memory leaks and/or unexpected behaviour may occur if the automatic initialization is performed improperly.
+This message may be avoided by performing initADFContext before using getCurrent().
+For more information please enable logging for oracle.adf.share.ADFContext at FINEST level.> 
+<Mar 8, 2017 4:26:11 AM UTC> <Warning> <oracle.adf.share.http.ServletADFContext> <BEA-000000> <Found oracle.adf.share.DefaultContext sticking to oldContext, while the current application is BamComposer> 
+<Mar 8, 2017 4:26:11 AM UTC> <Warning> <oracle.mds> <BEA-000000> <MDS-11033: Duplicate mappings between namespace "/oracle/adf/share/prefs" and metadata store "WebCenterFileMetadataStore" are found in the persistence configuration.> 
+<Mar 8, 2017 4:26:13 AM UTC> <Warning> <oracle.mds> <BEA-000000> <MDS-11033: Duplicate mappings between namespace "/oracle/adf/share/prefs" and metadata store "WebCenterFileMetadataStore" are found in the persistence configuration.> 
+<Mar 8, 2017 4:26:13 AM UTC> <Warning> <oracle.mds> <BEA-000000> <MDS-11033: Duplicate mappings between namespace "/oracle/adf/share/prefs" and metadata store "WebCenterFileMetadataStore" are found in the persistence configuration.> 
+<Mar 8, 2017 4:26:14 AM UTC> <Warning> <oracle.mds> <BEA-000000> <MDS-11033: Duplicate mappings between namespace "/oracle/adf/share/prefs" and metadata store "WebCenterFileMetadataStore" are found in the persistence configuration.> 
+<Mar 8, 2017 4:26:16 AM UTC> <Warning> <oracle.as.jmx.framework.generic.MBeanAttributeInfoMappingMetaData> <J2EE JMX-46034> <No annotation should be put on attribute mutator parameter "public abstract void oracle.adf.mbean.share.config.runtime.activedata.AdfActivedataConfigMXBean.setLatencyThreshold(java.lang.Integer)".> 
+<Mar 8, 2017 4:26:16 AM UTC> <Warning> <oracle.as.jmx.framework.generic.MBeanAttributeInfoMappingMetaData> <J2EE JMX-46034> <No annotation should be put on attribute mutator parameter "public abstract void oracle.adf.mbean.share.config.runtime.activedata.AdfActivedataConfigMXBean.setKeepAliveInterval(java.lang.Integer)".> 
+<Mar 8, 2017 4:26:16 AM UTC> <Warning> <oracle.as.jmx.framework.generic.MBeanAttributeInfoMappingMetaData> <J2EE JMX-46034> <No annotation should be put on attribute mutator parameter "public abstract void oracle.adf.mbean.share.config.runtime.activedata.AdfActivedataConfigMXBean.setMaxReconnectAttemptTime(java.lang.Integer)".> 
+<Mar 8, 2017 4:26:16 AM UTC> <Warning> <oracle.as.jmx.framework.generic.MBeanAttributeInfoMappingMetaData> <J2EE JMX-46034> <No annotation should be put on attribute mutator parameter "public abstract void oracle.adf.mbean.share.config.runtime.activedata.AdfActivedataConfigMXBean.setReconnectWaitTime(java.lang.Integer)".> 
+<Mar 8, 2017 4:26:16 AM UTC> <Warning> <oracle.as.jmx.framework.generic.MBeanAttributeInfoMappingMetaData> <J2EE JMX-46034> <No annotation should be put on attribute mutator parameter "public abstract void oracle.adf.mbean.share.config.runtime.activedata.AdfActivedataConfigMXBean.setPollingInterval(java.lang.Integer)".> 
+<Mar 8, 2017 4:26:16 AM UTC> <Warning> <oracle.as.jmx.framework.standardmbeans.spi.OracleStandardEmitterMBean> <J2EE JMX-46238> <Cannot map nonserializable type "interface oracle.adf.mbean.share.config.runtime.resourcebundle.BundleListType" to Open MBean Type for mbean interface oracle.adf.mbean.share.config.runtime.resourcebundle.AdfResourceBundleConfigMXBean, attribute BundleList.> 
+<Mar 8, 2017 4:26:18 AM UTC> <Warning> <oracle.as.jmx.framework.generic.MBeanAttributeInfoMappingMetaData> <J2EE JMX-46034> <No annotation should be put on attribute mutator parameter "public abstract void oracle.adf.mbean.share.connection.url.URLConnectionMXBean.setChallengeAuthenticationType(java.lang.String)".> 
+<Mar 8, 2017 4:26:34 AM UTC> <Warning> <oracle.beam.server> <BEA-000000> <Tried all: '1' addresses, but could not connect over HTTP to server: 'b78404cad950', port: '7001' try 1 times.> 
+<Mar 8, 2017 4:26:34 AM UTC> <Warning> <oracle.beam.server> <BEA-000000> <Tried all: '1' addresses, but could not connect over HTTP to server: '172.17.0.2', port: '7001' try 1 times.> 
+<Mar 8, 2017 4:26:44 AM UTC> <Warning> <oracle.beam.server> <BEA-000000> <Tried all: '1' addresses, but could not connect over HTTP to server: 'b78404cad950', port: '7001' try 2 times.> 
+<Mar 8, 2017 4:26:44 AM UTC> <Warning> <oracle.beam.server> <BEA-000000> <Tried all: '1' addresses, but could not connect over HTTP to server: '172.17.0.2', port: '7001' try 2 times.> 
+<Mar 8, 2017 4:26:46 AM UTC> <Notice> <Log Management> <BEA-170027> <The server has successfully established a connection with the Domain level Diagnostic Service.> 
+<Mar 8, 2017 4:26:46 AM UTC> <Notice> <WebLogicServer> <BEA-000365> <Server state changed to ADMIN.> 
+<Mar 8, 2017 4:26:46 AM UTC> <Notice> <WebLogicServer> <BEA-000365> <Server state changed to RESUMING.> 
+<Mar 8, 2017 4:26:47 AM UTC> <Warning> <Server> <BEA-002611> <The hostname "localhost", maps to multiple IP addresses: 127.0.0.1, 0:0:0:0:0:0:0:1.> 
+<Mar 8, 2017 4:26:47 AM UTC> <Notice> <Server> <BEA-002613> <Channel "Default" is now listening on 172.17.0.2:7001 for protocols iiop, t3, ldap, snmp, http.> 
+<Mar 8, 2017 4:26:47 AM UTC> <Notice> <Server> <BEA-002613> <Channel "Default[3]" is now listening on 127.0.0.1:7001 for protocols iiop, t3, ldap, snmp, http.> 
+<Mar 8, 2017 4:26:47 AM UTC> <Error> <Server> <BEA-002606> <The server is unable to create a server socket for listening on channel "Default[1]". The address fe80:0:0:0:42:acff:fe11:2 might be incorrect or another process is using port 7001: java.net.SocketException: No such device> 
+<Mar 8, 2017 4:26:47 AM UTC> <Notice> <Server> <BEA-002613> <Channel "Default[2]" is now listening on 0:0:0:0:0:0:0:1:7001 for protocols iiop, t3, ldap, snmp, http.> 
+<Mar 8, 2017 4:26:47 AM UTC> <Notice> <WebLogicServer> <BEA-000331> <Started the WebLogic Server Administration Server "AdminServer" for domain "soa_devdomain" running in development mode.> 
+<Mar 8, 2017 4:26:48 AM UTC> <Notice> <WebLogicServer> <BEA-000360> <The server started in RUNNING mode.> 
+<Mar 8, 2017 4:26:48 AM UTC> <Notice> <WebLogicServer> <BEA-000365> <Server state changed to RUNNING.> 
+<Mar 8, 2017 4:26:51 AM UTC> <Warning> <oracle.soa.scheduler> <BEA-000000> <No row exists in table soaqtz_JOB_DETAILS for lock named: VerificationSessionPurgeJob-QLCKSEP-DEFAULT> 
+SOA Platform is running and accepting requests

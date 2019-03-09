@@ -1,0 +1,15 @@
+[ENGINE]
+
+#DO NOT CHANGE THIS.
+Response File Version=1.0.0.0.0
+
+[GENERIC]
+
+#The oracle home location. This can be an existing Oracle Home or a new Oracle Home
+ORACLE_HOME=/u01/app/oracle/middleware/soa
+
+#Provide existing Middleware Home location.
+MIDDLEWARE_HOME=/u01/app/oracle/middleware
+
+#Application Server choices are WLS, WAS
+APPSERVER_TYPE=WLS
