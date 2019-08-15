@@ -6,7 +6,6 @@ JAVA_PACKAGE=jdk
 export JAVA_HOME=/opt/java
 JVM_OPTS=""
 export LANG=C.UTF-8
-ORACLE_AUTHORIZATION_KEY=230deb18db3e4014bb8e3e8324f81b43
 
 echo 'export JAVA_HOME=/opt/java' >> /etc/bash.bashrc && \
 echo 'export PATH=${PATH}:/opt/java/bin' >> /etc/bash.bashrc && \
