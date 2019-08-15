@@ -1,28 +1,27 @@
 
 JAVA_VERSION_MAJOR=8
-JAVA_VERSION_MINOR=211
-JAVA_VERSION_BUILD=12
+JAVA_VERSION_MINOR=221
+JAVA_VERSION_BUILD=11
 JAVA_PACKAGE=jdk
 export JAVA_HOME=/opt/java
 JVM_OPTS=""
 export LANG=C.UTF-8
-ORACLE_AUTHORIZATION_KEY=478a62b7d4e34b78b671c754eaaf38ab
+ORACLE_AUTHORIZATION_KEY=230deb18db3e4014bb8e3e8324f81b43
 
 echo 'export JAVA_HOME=/opt/java' >> /etc/bash.bashrc && \
 echo 'export PATH=${PATH}:/opt/java/bin' >> /etc/bash.bashrc && \
 export PATH=${PATH}:/opt/java/bin && \
 echo 'export LANG=C.UTF-8' >> /etc/bash.bashrc && \
-echo 'deb http://ftp.debian.org/debian jessie main non-free contrib' >> /etc/apt/sources.list && \
-	echo 'deb-src http://ftp.debian.org/debian jessie main non-free contrib' >> /etc/apt/sources.list && \
+echo 'deb http://ftp.debian.org/debian buster main non-free contrib' >> /etc/apt/sources.list && \
+	echo 'deb-src http://ftp.debian.org/debian buster main non-free contrib' >> /etc/apt/sources.list && \
 	apt-get -o Acquire::Check-Valid-Until=false update
 	apt-get update -q && \
     apt-get install -q -y --no-install-recommends ca-certificates curl unzip && \
-    curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/java.tar.gz \
-      https://download.oracle.com/otn/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${ORACLE_AUTHORIZATION_KEY}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz && \
+    mv /assets/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz /tmp/java.tar.gz && \
     gunzip /tmp/java.tar.gz && \
     tar -C /opt -xf /tmp/java.tar && \
     ln -s /opt/jdk1.${JAVA_VERSION_MAJOR}.0_${JAVA_VERSION_MINOR} ${JAVA_HOME} && \
-    curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/unlimited_jce_policy.zip "http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip" && \
+    mv /assets/jce_policy-8.zip /tmp/unlimited_jce_policy.zip && \
     unzip -jo -d ${JAVA_HOME}/jre/lib/security /tmp/unlimited_jce_policy.zip && \
     rm -rf ${JAVA_HOME}/*src.zip \
            ${JAVA_HOME}/lib/missioncontrol \
