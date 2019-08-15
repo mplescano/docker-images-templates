@@ -1,4 +1,4 @@
-FROM mplescano/java-debian:8.211.12.jdk
+FROM mplescano/java-debian:8.221.11.jdk
 LABEL MAINTAINER='mplescano@'
 ENV PRODUCT='jboss-eap-6.3'                                                                            \
     JBOSS_USER='jboss'
