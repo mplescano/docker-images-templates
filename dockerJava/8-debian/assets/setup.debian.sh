@@ -9,8 +9,12 @@ export LANG=C.UTF-8
 
 echo 'export JAVA_HOME=/opt/java' >> /etc/bash.bashrc && \
 echo 'export PATH=${PATH}:/opt/java/bin' >> /etc/bash.bashrc && \
+touch /etc/profile.d/envs.sh &&
+echo 'export JAVA_HOME=/opt/java' >> /etc/profile.d/envs.sh && \
+echo 'export PATH=${PATH}:/opt/java/bin' >> /etc/profile.d/envs.sh && \
 export PATH=${PATH}:/opt/java/bin && \
 echo 'export LANG=C.UTF-8' >> /etc/bash.bashrc && \
+echo 'export LANG=C.UTF-8' >> /etc/profile.d/envs.sh && \
 echo 'deb http://ftp.debian.org/debian buster main non-free contrib' >> /etc/apt/sources.list && \
 	echo 'deb-src http://ftp.debian.org/debian buster main non-free contrib' >> /etc/apt/sources.list && \
 	apt-get -o Acquire::Check-Valid-Until=false update
